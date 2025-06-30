@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Destek Talep Formu</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f7f9fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            max-width: 420px;
+            width: 100%;
+        }
+
+        h1 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: #222222;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1.5px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #ff4b5c;
+            box-shadow: 0 0 5px rgba(255, 75, 92, 0.5);
+        }
+
+        button {
+            background-color: #ff4b5c;
+            /* Kırmızı buton */
+            color: white;
+            border: none;
+            padding: 0.85rem 1rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.25s ease;
+            user-select: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        button:hover:not(:disabled),
+        button:focus:not(:disabled) {
+            background-color: #e03e4f;
+            /* Koyu kırmızı hover */
+            outline: none;
+        }
+
+        button:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        /* Spinner CSS */
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(255, 255, 255, 0.6);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Destek Talep Formu</h1>
+        <form id="supportForm">
+            <input type="text" name="adsoyad" placeholder="Ad Soyad" required />
+            <input type="email" name="email" placeholder="E-posta Adresi" required />
+            <textarea name="mesaj" rows="5" placeholder="Destek talebinizi buraya yazınız" required></textarea>
+            <button type="submit">
+                <span class="btn-text">Talebi Gönder</span>
+            </button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('supportForm');
+        const button = form.querySelector('button');
+        const btnText = button.querySelector('.btn-text');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Disable button
+            button.disabled = true;
+
+            // Remove button text, add spinner
+            btnText.style.display = 'none';
+
+            const spinner = document.createElement('span');
+            spinner.classList.add('spinner');
+            button.appendChild(spinner);
+
+            setTimeout(() => {
+                alert('Talebiniz başarıyla ulaştırılmıştır.');
+
+                // Enable button & reset text
+                button.disabled = false;
+                btnText.style.display = 'inline';
+                button.removeChild(spinner);
+
+                form.reset();
+            }, 3000);
+        });
+    </script>
+</body>
+
+</html>
