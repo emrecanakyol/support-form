@@ -20,6 +20,7 @@
             justify-content: center;
             align-items: center;
             padding: 1rem;
+            flex-direction: column;
         }
 
         .container {
@@ -63,13 +64,12 @@
         input[type="email"]:focus,
         textarea:focus {
             outline: none;
-            border-color: #ff4b5c;
-            box-shadow: 0 0 5px rgba(255, 75, 92, 0.5);
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
 
         button {
-            background-color: #ff4b5c;
-            /* Kırmızı buton */
+            background-color: #007bff; /* Mavi buton */
             color: white;
             border: none;
             padding: 0.85rem 1rem;
@@ -87,8 +87,7 @@
 
         button:hover:not(:disabled),
         button:focus:not(:disabled) {
-            background-color: #e03e4f;
-            /* Koyu kırmızı hover */
+            background-color: #0056b3; /* Koyu mavi hover */
             outline: none;
         }
 
@@ -111,6 +110,15 @@
             to {
                 transform: rotate(360deg);
             }
+        }
+
+        .email-footer {
+            margin-top: 1rem;
+            color: #555555;
+            font-size: 0.95rem;
+            text-align: center;
+            user-select: text;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         @media (max-width: 400px) {
@@ -137,6 +145,8 @@
             </button>
         </form>
     </div>
+
+    <div class="email-footer">remindernotificationsofficial@gmail.com</div>
 
     <script>
         const form = document.getElementById('supportForm');
